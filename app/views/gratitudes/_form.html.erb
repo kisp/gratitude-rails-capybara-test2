@@ -1,0 +1,26 @@
+<%= form_with(model: gratitude) do |form| %>
+  <% if gratitude.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(gratitude.errors.count, "error") %> prohibited this gratitude from being saved:</h5>
+      <ul class="mb-0">
+        <% gratitude.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control", placeholder: "What are you grateful for?" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :body, class: "form-label" %>
+    <%= form.textarea :body, class: "form-control", rows: 5, placeholder: "Tell me more about it..." %>
+  </div>
+
+  <div>
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
