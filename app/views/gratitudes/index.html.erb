@@ -1,0 +1,35 @@
+<% content_for :title, "Gratitudes" %>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1>My Gratitudes</h1>
+  <%= link_to new_gratitude_path, class: "btn btn-primary" do %>
+    <i class="bi bi-plus-circle"></i> Add Gratitude
+  <% end %>
+</div>
+
+<% if @gratitudes.any? %>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <% @gratitudes.each do |gratitude| %>
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title"><%= gratitude.title %></h5>
+            <p class="card-text text-muted"><%= truncate(gratitude.body, length: 150) %></p>
+          </div>
+          <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+            <small class="text-muted"><%= time_ago_in_words(gratitude.created_at) %> ago</small>
+            <%= link_to "View", gratitude, class: "btn btn-outline-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="text-center py-5">
+    <h4 class="text-muted">No gratitudes yet</h4>
+    <p class="text-muted">Start by adding something you're grateful for!</p>
+    <%= link_to new_gratitude_path, class: "btn btn-primary mt-2" do %>
+      <i class="bi bi-plus-circle"></i> Add Your First Gratitude
+    <% end %>
+  </div>
+<% end %>

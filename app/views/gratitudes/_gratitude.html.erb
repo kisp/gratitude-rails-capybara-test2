@@ -1,0 +1,7 @@
+<div id="<%= dom_id gratitude %>" class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h3 class="card-title"><%= gratitude.title %></h3>
+    <p class="card-text"><%= gratitude.body %></p>
+    <small class="text-muted">Added <%= time_ago_in_words(gratitude.created_at) %> ago</small>
+  </div>
+</div>
